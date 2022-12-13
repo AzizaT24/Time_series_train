@@ -42,14 +42,16 @@ series.to_excel('random_time_series_month_resampl.xlsx', sheet_name='Sheet_name_
 print(series.shape)
 
 
- ![image](https://user-images.githubusercontent.com/120400018/207327851-f5a7a90c-9b41-4aae-812c-77992735256c.png)
+
 
 # transform training data & save lambda value
 fitted_data, fitted_lambda = stats.boxcox(series.squeeze())
  
 
+
 fig, ax = plt.subplots(1, 2)
- 
+ ![image](https://user-images.githubusercontent.com/120400018/207328091-28080aa0-24cc-491e-9e46-06993343516f.png)
+
 sns.distplot(series, hist = False, kde = True,
             kde_kws = {'shade': True, 'linewidth': 2},
             label = "Non-Normal", color ="red", ax = ax[0])
@@ -70,6 +72,7 @@ print(f"Lambda value used for Transformation: {fitted_lambda}")
 fig, ax = plt.subplots(1, 2, figsize=(12, 7))
 sns.histplot(series,kde=True, color ='blue',ax=ax[0])
 sm.ProbPlot(series).qqplot(line='s', ax=ax[1])
+![image](https://user-images.githubusercontent.com/120400018/207328241-15e90ec8-718a-4bce-8df4-35b6fa7fb66f.png)
 
 analysis = fitted_data.copy()
 
@@ -83,7 +86,7 @@ residual = decompose_result_mult.resid
 decompose_result_mult.plot()
 plt.show()
 
-
+ ![image](https://user-images.githubusercontent.com/120400018/207327851-f5a7a90c-9b41-4aae-812c-77992735256c.png)
 
 # Split into train and test set
 train = series[:48] 
@@ -108,6 +111,8 @@ train['Transport_cost'].plot(legend=True,label='TRAIN')
 test['Transport_cost'].plot(legend=True,label='TEST',figsize=(12,8))
 plt.title('Train and Test Data')
 plt.show()
+![image](https://user-images.githubusercontent.com/120400018/207328405-c50f1d1e-e10d-4379-8a54-c291648ec49d.png)
+
 train['Transport_cost'].plot(legend=True,label='TRAIN')
 test['Transport_cost'].plot(legend=True,label='TEST',figsize=(12,8))
 test_predictions.plot(legend=True,label='PREDICTION')
@@ -115,6 +120,7 @@ plt.title('Train, Test and Predicted Test using Holt Winters')
 
 plt.show()
 
+![image](https://user-images.githubusercontent.com/120400018/207328485-e00980f0-642a-4190-818c-7abeb4bfc570.png)
 
 from sklearn.metrics import mean_absolute_error,mean_squared_error
 mse =mean_squared_error(test,test_predictions)
@@ -137,6 +143,7 @@ plt.title('Transport Forecast')
 plt.show()
 pd.set_option('display.max_rows', 1000)
 print(forecast_predictions[:15])
+![image](https://user-images.githubusercontent.com/120400018/207328582-3cdf5a70-b1c8-412d-92ae-43212f8c88d5.png)
 
 
 print(series.describe())
@@ -173,6 +180,8 @@ test['Transport_cost'].plot(legend=True,label='TEST',figsize=(12,8))
 test_predictions1.plot(legend=True,label='Forecasted costs')
 plt.title('Transport Forecast')
 plt.show()
+![image](https://user-images.githubusercontent.com/120400018/207328690-68d0c9fe-22eb-435c-bbd9-c6bc6a02f8bc.png)
+
 pd.set_option('display.max_rows', 1000)
 print(test_predictions1[:9])
 
@@ -187,6 +196,9 @@ series['Transport_cost'].plot(figsize=(12,8),legend=True,label='Current costs')
 forecast_predictions1.plot(legend=True,label='Forecasted costs')
 plt.title('Transport Forecast')
 plt.show()
+![image](https://user-images.githubusercontent.com/120400018/207328754-fef70a53-7d76-42c6-bdcf-1cdcbd184735.png)
+
+
 pd.set_option('display.max_rows', 1000)
 print(forecast_predictions1[:15])
 
