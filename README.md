@@ -1,2 +1,2 @@
-# Time_series_train
- Holt-Winters model
+# Time Series Training. Random Sample Source 
+ Holt-Winters model: Exponential Smoothing and ETS Models
